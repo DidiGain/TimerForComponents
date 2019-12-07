@@ -31,12 +31,13 @@ class ViewController: UIViewController {
         let alert = UIAlertController(title: "Start", message: "Enter number of days", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { [unowned alert] _ in
             if let dayNumber = alert.textFields?.first?.text {
-                let day: TimeInterval = 4
+                let day: TimeInterval = 3
                 self.timer = Timer.scheduledTimer(withTimeInterval: day, repeats: true, block: { (timer) in
                     if Int(dayNumber)! > self.dayStart {
                         self.dayStart += 1
                         self.timeLabel.text = "\(self.dayStart)"
-                    } else {
+                    }
+                    else if dayNumber == self.timeLabel.text {
                         timer.invalidate()
                         self.setInitialScreen()
                     }
