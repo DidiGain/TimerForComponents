@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  TimerForComponents
+//  Washing
 //
-//  Created by Di Gain on 05/12/2019.
+//  Created by Di Gain on 06/12/2019.
 //  Copyright © 2019 Didi Gain. All rights reserved.
 //
 
