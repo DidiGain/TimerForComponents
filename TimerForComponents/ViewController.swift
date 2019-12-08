@@ -30,22 +30,22 @@ class ViewController: UIViewController {
     @objc func startButtonPressed() {
         let alert = UIAlertController(title: "Start", message: "Enter number of days", preferredStyle: .alert)
         let ok = UIAlertAction(title: "OK", style: .default) { [unowned alert] _ in
-            if let dayNumber = alert.textFields?.first?.text {
+            guard let dayNumber = alert.textFields?.first?.text, !dayNumber.isEmpty else { return }
                 let day: TimeInterval = 3
                 self.timer = Timer.scheduledTimer(withTimeInterval: day, repeats: true, block: { (timer) in
-                    if Int(dayNumber)! > self.dayStart {
-                        self.dayStart += 1
-                        self.timeLabel.text = "\(self.dayStart)"
-                    }
-                    else if dayNumber == self.timeLabel.text {
+                    if dayNumber == self.timeLabel.text {
                         timer.invalidate()
                         self.setInitialScreen()
                     }
+                    else if Int(dayNumber)! > self.dayStart {
+                        self.dayStart += 1
+                        self.timeLabel.text = "\(self.dayStart)"
+                    }
+                    
                 })
                 self.startButton.isHidden = true
                 self.stopButton.isHidden = false
             }
-        }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(ok)
         alert.addAction(cancel)
